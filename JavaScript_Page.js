@@ -17,13 +17,13 @@ $('table tr td').click(function () {
 				$('body').append('<button onclick="location.reload()">Play Again</div>');
 				$('.winner').css('background-color', 'green');
 				$('button').css('color', 'green');
-			} 
-			// else if (findWinner() == -1 ) {
-			// 	$('body').append('<div class="winner"><span>Match drawn</span></div>');
-			// 	$('body').append('<button onclick="location.reload()">Play Again</div>');
-			// 	$('.winner').css('background-color', 'white');
-			// 	$('button').css('color', 'gold');
-			// }
+			}
+			else if (findWinner() == -1) {
+				$('body').append('<div class="winner"><span>Match drawn</span></div>');
+				$('body').append('<button onclick="location.reload()">Play Again</div>');
+				$('.winner').css('background-color', 'white');
+				$('button').css('color', 'gold');
+			}
 			else {
 				$('body').append('<div class="winner"><span>Winner</span>O</div>');
 				$('body').append('<button onclick="location.reload()">Play Again</div>');
@@ -35,6 +35,7 @@ $('table tr td').click(function () {
 	}
 });
 
+//// Function for finding game winner
 function findWinner() {
 	player1 = $('table tr:nth-child(1) td:nth-child(1)').text();
 	player2 = $('table tr:nth-child(1) td:nth-child(2)').text();
@@ -46,7 +47,7 @@ function findWinner() {
 	player8 = $('table tr:nth-child(3) td:nth-child(2)').text();
 	player9 = $('table tr:nth-child(3) td:nth-child(3)').text();
 
-	
+	////Rows checking
 	if ((player1 == player2) && (player2 == player3)) {
 		return player3;
 	}
@@ -56,6 +57,8 @@ function findWinner() {
 	else if ((player7 == player8) && (player8 == player9)) {
 		return player9;
 	}
+
+	////Columns checking
 	else if ((player1 == player4) && (player4 == player7)) {
 		return player7;
 	}
@@ -65,14 +68,18 @@ function findWinner() {
 	else if ((player3 == player6) && (player6 == player9)) {
 		return player9;
 	}
+
+	////Diagonal checking
 	else if ((player1 == player5) && (player9 == player5)) {
 		return player9;
 	}
 	else if ((player3 == player5) && (player5 == player7)) {
 		return player7;
 	}
+
+	//game draw
 	else {
-		return -1;//game draw
+		return -1;
 	}
 }
 
